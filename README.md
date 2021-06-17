@@ -4,8 +4,9 @@ buffstyles Infra repository
 # Подключения по ssh
 
 Простой способ для подключения к `someinternalhost` в одну команду с использованием `ProxyJump`:
-`ssh -i ~/.ssh/appuser -J 'bastion_user'@'bastion_public_ip' 'someinternalhost_user'@'someinternalhost_private_ip'`
-
+```
+ssh -i ~/.ssh/appuser -J 'bastion_user'@'bastion_public_ip' 'someinternalhost_user'@'someinternalhost_private_ip'
+```
 
 Редактируем `~/.ssh/config` файл для более лаконичной команды:
 ```
