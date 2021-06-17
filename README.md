@@ -14,9 +14,9 @@ Host bastion
 	User appuser
 	IdentityFile ~/.ssh/appuser
 Host someinternalhost
-    Hostname SOMEINTERNALHOST_PRIVATE_IP
-    User appuser
-    IdentityFile ~/.ssh/appuser
+	Hostname SOMEINTERNALHOST_PRIVATE_IP
+	User appuser
+	IdentityFile ~/.ssh/appuser
 ```
 
 Теперь можем подключиться к `someinternalhost` используя команду:
@@ -36,8 +36,8 @@ Host bastion
 	User appuser
 	IdentityFile ~/.ssh/appuser
 Host someinternalhost
-    Hostname SOMEINTERNALHOST_PRIVATE_IP
-    User appuser
+	Hostname SOMEINTERNALHOST_PRIVATE_IP
+	User appuser
 	IdentityFile ~/.ssh/appuser
 	ProxyCommand ssh bastion -W %h:%p
 ```
@@ -45,4 +45,5 @@ Host someinternalhost
 # Данные для проверки
 
 bastion_IP = 84.201.173.236
+
 someinternalhost_IP = 10.128.0.24
