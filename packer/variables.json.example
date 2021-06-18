@@ -1,7 +1,6 @@
 {
     "folder_id": "some_folder_id",
     "source_image_family": "some_image_family",
-    "service_account_key_file": "variables.json.example",
     "subnet_id": "some_subnet_id",
     "zone": "some_zone"
 }
