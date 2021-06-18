@@ -48,3 +48,22 @@ Host someinternalhost
 bastion_IP = 84.201.173.236
 
 someinternalhost_IP = 10.128.0.24
+
+
+testapp_IP = 84.252.130.146
+
+testapp_port = 9292
+
+
+Команда в Яндекс CLI для запуска инстанса с уже запущенным приложением:
+```
+yc compute instance create \
+  --name reddit-app \
+  --hostname reddit-app \
+  --zone ru-central1-a \
+  --memory=4 \
+  --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1604-lts,size=10GB \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --metadata serial-port-enable=1 \
+  --metadata-from-file user-data=./cloudinit.yaml
+```
