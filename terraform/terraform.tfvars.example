@@ -1,0 +1,8 @@
+cloud_id                 = "some cloud id"
+folder_id                = "some folder id"
+zone                     = "some zone"
+image_id                 = "some image id"
+public_key_path          = "/path/to/public/key/file"
+subnet_id                = "some subnet id"
+service_account_key_file = "/path/to/service/account/key/file"
+private_key_path   = "/path/to/private/key/file"
