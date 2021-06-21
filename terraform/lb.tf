@@ -6,7 +6,7 @@ resource "yandex_lb_target_group" "reddit-target-group" {
     subnet_id = var.subnet_id
     address   = yandex_compute_instance.app[0].network_interface.0.ip_address
   }
-    target {
+  target {
     subnet_id = var.subnet_id
     address   = yandex_compute_instance.app[1].network_interface.0.ip_address
   }
