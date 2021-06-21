@@ -8,7 +8,6 @@ variable "zone" {
   description = "Zone"
 }
 variable "public_key_path" {
-  # Описание переменной
   description = "Path to the public key used for ssh access"
 }
 variable "image_id" {
@@ -22,4 +21,10 @@ variable "service_account_key_file" {
 }
 variable "private_key_path" {
   description = "Path to private key file used for ssh access"
+}
+variable "region_id" {
+  description = "Region id"
+}
+variable "number" {
+  description = "Virtual machine count"
 }
