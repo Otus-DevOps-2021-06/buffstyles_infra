@@ -29,3 +29,19 @@ variable "region_id" {
 variable "number" {
   description = "Virtual machine count"
 }
+variable "app_disk_image" {
+  description = "Disk image for reddit app"
+}
+variable "db_disk_image" {
+  description = "Disk image for reddit db"
+}
+variable "app_name" {
+  description = "App name"
+}
+variable "db_name" {
+  description = "DB name"
+}
+variable "enable" {
+  description = "Type 'yes' if u want to install reddit-app"
+  type        = string
+}

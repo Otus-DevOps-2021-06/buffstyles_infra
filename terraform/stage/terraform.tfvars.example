@@ -1,0 +1,13 @@
+cloud_id                 = "some cloud id"
+folder_id                = "some folder id"
+image_id                 = "some image id"
+public_key_path          = "/path/to/public/key/file"
+subnet_id                = "some subnet id"
+service_account_key_file = "/path/to/service/account/key/file"
+private_key_path   = "/path/to/private/key/file"
+region_id = "some region id"
+number = 1
+app_disk_image           = "some app disk image"
+db_disk_image            = "some db disk image"
+app_name                 = "some app name"
+db_name                  = "some db name"

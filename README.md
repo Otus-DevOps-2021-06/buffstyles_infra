@@ -131,3 +131,45 @@ yc compute instance create \
   - Описание инстанса переписано с использованием `count`.
   - Количество инстансов вынесено в input переменные.
   - Соответствующие изменения внесены в балансировщик и output переменные.
+
+## Домашнее задание №9.
+
+### Основное задание:
+
+ - Создано два новых шаблона packer `db.json` и `app.json` для для сборки образов ВМ с mongodb и с ruby соответственно.
+ - Созданы модули terraform для запуска ВМ с ruby и с mongodb.
+ - В файле `main.tf` вставлены секции вызова созданных модулей.
+ - Создано два идентичных окружения `stage` и `prod`.
+ - Конфигурация модулей параметризирована.
+ - Конфигурационные файлы отформатированы.
+
+ ### Дополнительное задание 1:
+
+ - Настроено хранение стейт файла в удаленном бекенде для окружений `stage` и `prod`, используя Yandex Object Storage в качестве бекенда. Описание бекенда вынесено в отдельный файл `backend.tf` в каждом окружении.
+ - Проверена работоспособность удаленного бекенда. Terraform видит текущее состояние инфраструктуры независимо от директории, в которой он запускается.
+ - Для работы блокировок создана `serverless Yandex  Database` через веб-консоль Yandex Cloud. В веб-консоли узнаем `endpoint`созданной базы. Далее через `aws cli` создана таблица `tfstate-lock-table` (имя может быть любым), например:
+  ```
+endpoint="https://docapi.serverless.yandexcloud.net/ru-central1/b1guu7b8p27pq5v031iu/etn01q6lcqgdm09hrass"
+
+table_name="tfstate-lock-table"
+
+aws dynamodb create-table \
+   --table-name $table_name \
+   --attribute-definitions \
+     AttributeName=LockID,AttributeType=S \
+   --key-schema \
+     AttributeName=LockID,KeyType=HASH \
+   --endpoint $endpoint
+  ```
+
+ Также указываем endpoint URL базы и имя таблицы в файле `backend.tf`, например:
+
+```
+dynamodb_endpoint = "https://docapi.serverless.yandexcloud.net/ru-central1/b1guu7b8p27pq5v031iu/etn01q6lcqgdm09hrass"
+dynamodb_table    = "tfstate-lock-table"
+```
+
+### Дополнительное задание 2:
+
+ - Для работы `provisioner` для деплоя нашего приложения создан отдельный модуль `deploy`. Файлы, используемые в `provisioner`, находятся в директории модуля.
+ - Добавлена переменная `enable`. При запуске terraform запросит значение переменной. Если указать `yes`, то приложение будет установлено, в противном случае инфраструктура поднимется без приложения.
