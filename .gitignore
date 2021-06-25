@@ -11,7 +11,7 @@ jdauphant.nginx
 .vagrant/
 *.log
 *.pyc
-molecule
+.molecule
 .cache
 .pytest_cache
 venv
