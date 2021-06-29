@@ -1,10 +1,10 @@
-# terraform {
-#   required_providers {
-#     yandex = {
-#       source = "yandex-cloud/yandex"
-#     }
-#   }
-# }
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+}
 
 resource "yandex_compute_instance" "db" {
 
@@ -18,7 +18,7 @@ resource "yandex_compute_instance" "db" {
 
   resources {
     cores         = 2
-    memory        = 2
+    memory        = 1
     core_fraction = 5
   }
 

@@ -1,0 +1,41 @@
+---
+  - name: Configure App
+    hosts: app
+    gather_facts: yes
+    become: yes
+
+    vars:
+      #db_host: 10.128.0.5
+      db_host: "{% set IP=[] %}{% for host in groups['db'] %}{% if IP.insert(loop.index,hostvars[host]['ansible_facts']['eth0']['ipv4']['address']) %}{% endif %}{% endfor %}{{ IP|join(',') }}"
+
+    tasks:
+      - name: Install git
+        apt:
+          name: git
+          state: present
+          update_cache: yes
+
+      - name: Add unit file for Puma
+        copy:
+          src: files/puma.service
+          dest: /etc/systemd/system/puma.service
+        notify: reload puma
+
+      - name: Add config for DB connection
+        template:
+          src: templates/db_config.j2
+          dest: /home/ubuntu/db_config
+          owner: ubuntu
+          group: ubuntu
+
+      - name: enable puma
+        systemd:
+          name: puma
+          enabled: yes
+
+    handlers:
+      - name: reload puma
+        become: yes
+        systemd:
+          name: puma
+          state: restarted
