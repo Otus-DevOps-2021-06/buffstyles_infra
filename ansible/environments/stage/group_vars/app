@@ -1,5 +1,5 @@
-db_host: 10.128.0.32
-#db_host: "{% set IP=[] %}{% for host in groups['db'] %}{% if IP.insert(loop.index,hostvars[host]['ansible_facts']['eth0']['ipv4']['address']) %}{% endif %}{% endfor %}"
+db_host: 10.128.0.7
+#db_host: "{% set IP=[] %}{% for host in groups['db'] %}{% if IP.insert(loop.index,hostvars[host]['ansible_facts']['eth0']['ipv4']['address']) %}{% endif %}{% endfor %}{{IP|join(',')}}"
 
 nginx_sites:
   default:

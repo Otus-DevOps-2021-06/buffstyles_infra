@@ -3,29 +3,32 @@
   hosts: all
   become: yes
 
-  tasks:
-    - name: Install apt-transport-https
-      apt:
-        name: apt-transport-https
-        state: present
+  roles:
+    - db
 
-    - name: Add apt key for MongoDB
-      apt_key:
-        url: https://www.mongodb.org/static/pgp/server-4.2.asc
-        state: present
+  # tasks:
+  #   - name: Install apt-transport-https
+  #     apt:
+  #       name: apt-transport-https
+  #       state: present
 
-    - name: Add mongodb repository
-      apt_repository:
-        repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse
-        state: present
-        filename: mongodb-org-4.2
+  #   - name: Add apt key for MongoDB
+  #     apt_key:
+  #       url: https://www.mongodb.org/static/pgp/server-4.2.asc
+  #       state: present
 
-    - name: Install MongoDB and required packages
-      apt:
-        name: mongodb-org
-        update_cache: yes
+  #   - name: Add mongodb repository
+  #     apt_repository:
+  #       repo: deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/4.2 multiverse
+  #       state: present
+  #       filename: mongodb-org-4.2
 
-    - name: Enable MongoDB
-      systemd:
-        name: mongod
-        enabled: yes
+  #   - name: Install MongoDB and required packages
+  #     apt:
+  #       name: mongodb-org
+  #       update_cache: yes
+
+  #   - name: Enable MongoDB
+  #     systemd:
+  #       name: mongod
+  #       enabled: yes
