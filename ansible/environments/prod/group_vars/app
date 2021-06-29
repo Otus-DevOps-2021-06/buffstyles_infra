@@ -1,0 +1,10 @@
+db_host: 10.128.0.21
+#db_host: "{% set IP=[] %}{% for host in groups['db'] %}{% if IP.insert(loop.index,hostvars[host]['ansible_facts']['eth0']['ipv4']['address']) %}{% endif %}{% endfor %}"
+
+nginx_sites:
+  default:
+    - listen 80
+    - server_name "reddit"
+    - location / {
+        proxy_pass http://127.0.0.1:9292;
+    }
